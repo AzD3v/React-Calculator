@@ -68,10 +68,6 @@ class App extends React.Component {
       <div>
         <h1>React Calculator</h1>
         <ResultBoard
-          style={{
-            background: "#111",
-            color: "#fff"
-          }}
           result={this.state.result}
         />
         <Touchpad
