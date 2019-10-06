@@ -11,7 +11,7 @@ const buttonStyle = {
 type Button = {
     value: string;
     label: string;
-    onClickButton(input: React.ChangeEvent<HTMLInputElement>): void | number;
+    onClickButton(e: React.ChangeEvent<HTMLInputElement>): void | number;
 }
 
 const Button = (props: Button) => 

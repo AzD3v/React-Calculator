@@ -32180,12 +32180,14 @@ Object.defineProperty(exports, "__esModule", {
 
 var React = __importStar(require("react"));
 
+var resultBoardStyle = {
+  background: '#111',
+  color: '#fff'
+};
+
 var ResultBoard = function ResultBoard(props) {
   return React.createElement("div", {
-    style: {
-      background: '#111',
-      color: '#fff'
-    }
+    style: resultBoardStyle
   }, React.createElement("h1", null, props.result));
 };
 

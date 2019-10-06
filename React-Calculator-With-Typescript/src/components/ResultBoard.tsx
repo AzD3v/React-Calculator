@@ -1,8 +1,17 @@
 import * as React from 'react';
 
-const ResultBoard = props => {
+const resultBoardStyle = {
+    background: '#111', 
+    color: '#fff'
+}
+
+type ResultBoard = {
+    result: string
+}
+
+const ResultBoard = (props: ResultBoard) => {
     return (
-        <div style={{ background: '#111', color: '#fff' }}>
+        <div style={resultBoardStyle}>
             <h1>{props.result}</h1>
         </div>
     )
