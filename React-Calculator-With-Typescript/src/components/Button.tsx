@@ -11,7 +11,7 @@ const buttonStyle = {
 type Button = {
     value: string;
     label: string;
-    onClickButton(input: React.MouseEvent<HTMLButtonElement, MouseEvent>): void | number;
+    onClickButton(input: React.ChangeEvent<HTMLInputElement>): void | number;
 }
 
 const Button = (props: Button) => 

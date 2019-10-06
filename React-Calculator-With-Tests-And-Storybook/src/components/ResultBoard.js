@@ -2,7 +2,7 @@ import React from "react";
 
 const ResultBoard = props => {
   return (
-    <div style={{ background: "#111", color: "#fff" }}>
+    <div style={props.style}>
       <h1>{props.result}</h1>
     </div>
   );

@@ -17,7 +17,7 @@ type Touchpad = {
     value: string;
     label: string;
     result: string;
-    onChosenValueClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+    onChosenValueClick(e: React.ChangeEvent<HTMLInputElement>): void;
     onUndo(): void;
     onClear(): void;
     onPowerOf2(): void;
@@ -30,7 +30,7 @@ const Touchpad = (props: Touchpad) => {
             <Button onClickButton={props.onChosenValueClick} value='7' label='7'></Button>
             <Button onClickButton={props.onChosenValueClick} value='8' label='8'></Button>
             <Button onClickButton={props.onChosenValueClick} value='9' label='9'></Button>
-            <Button onClickButton={props.onChosenValueClick} value='/' label='÷'></Button>
+            <Button onClickButton={props.onChosenValueClick} value='÷' label='÷'></Button>
             <Button onClickButton={props.onUndo} label='⏎' value=''></Button>
             <Button onClickButton={props.onClear} label='C' value=''></Button>
             <Button onClickButton={props.onChosenValueClick} value='4' label='4'></Button>

@@ -32077,7 +32077,7 @@ var Touchpad = function Touchpad(props) {
     label: "9"
   }), React.createElement(Button_1.default, {
     onClickButton: props.onChosenValueClick,
-    value: "/",
+    value: "\xF7",
     label: "\xF7"
   }), React.createElement(Button_1.default, {
     onClickButton: props.onUndo,
@@ -32190,7 +32190,58 @@ var ResultBoard = function ResultBoard(props) {
 };
 
 exports.default = ResultBoard;
-},{"react":"../node_modules/react/index.js"}],"App.tsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"helpers.tsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+}); // Helper function that prevents app crash from invalid single input
+
+exports.preventInvalidInput = function (result) {
+  var validSingleInputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  var resultArr = result.split('');
+
+  if (!resultArr.some(function (value) {
+    return validSingleInputs.includes(value);
+  })) {
+    return true;
+  }
+
+  return false;
+}; // Swap symbols on calculation by JavaScript functions and JavaScript operators 
+
+
+exports.handleSymbolsSwap = function (result, symbol) {
+  switch (symbol) {
+    case '²':
+      var elemElevatedToPowerOf2 = result[result.indexOf('²') - 1];
+      result = result.replace(elemElevatedToPowerOf2, "Math.pow(" + elemElevatedToPowerOf2 + ", 2)");
+      result = result.replace('²', '');
+      break;
+
+    case '√':
+      var elemToFindSquareRoot = result[result.indexOf('√') + 1];
+      result = result.replace('√', "Math.sqrt(" + elemToFindSquareRoot);
+      result = result.replace(result[result.indexOf('r') + 4], '');
+      result += ')';
+      break;
+
+    case '%':
+      result = result.replace('%', '/100');
+      break;
+
+    case 'x':
+      result = result.replace('x', '*');
+      break;
+
+    case '÷':
+      result = result.replace('÷', '/');
+      break;
+  }
+
+  return result;
+};
+},{}],"App.tsx":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -32247,6 +32298,8 @@ var Touchpad_1 = __importDefault(require("./components/Touchpad"));
 
 var ResultBoard_1 = __importDefault(require("./components/ResultBoard"));
 
+var helpers_1 = require("./helpers");
+
 var App =
 /** @class */
 function (_super) {
@@ -32254,8 +32307,6 @@ function (_super) {
 
   function App(props) {
     var _this = _super.call(this, props) || this;
-
-    _this.handleSymbolsSwap = function (result, symbol) {};
 
     _this.handleChosenValueClick = function (e) {
       var chosenValue = e.target.value;
@@ -32268,29 +32319,23 @@ function (_super) {
     };
 
     _this.handleCalculateResult = function (result) {
-      // TODO: Check for 'to power of 2' symbol and replace it with Math.power (for every occurence)
+      // Prevent app crash from invalid single input
+      if (helpers_1.preventInvalidInput(result)) {
+        return;
+      } // Replacing symbols '²' and '√' with JavaScript math functions
+
+
       if (result.indexOf('²') > -1) {
-        var elemElevatedToPowerOf2 = result[result.indexOf('²') - 1];
-        result = result.replace(elemElevatedToPowerOf2, "Math.pow(" + elemElevatedToPowerOf2 + ", 2)");
-        result = result.replace('²', '');
-      } // TODO: Check square root on expressions
+        result = helpers_1.handleSymbolsSwap(result, '²');
+      } else if (result.indexOf('√') > -1) {
+        result = helpers_1.handleSymbolsSwap(result, '√');
+      } // Checking operation symbols (inluding percentage and change them)
 
 
-      if (result.indexOf('√') > -1) {
-        var elemToFindSquareRoot = result[result.indexOf('√') + 1];
-        result = result.replace('√', "Math.sqrt(" + elemToFindSquareRoot);
-        result = result.replace(result[result.indexOf('r') + 4], '');
-        result += ')';
-        console.log(result);
-      } // Check for percantage symbol
+      result = helpers_1.handleSymbolsSwap(result, '%');
+      result = helpers_1.handleSymbolsSwap(result, 'x');
+      result = helpers_1.handleSymbolsSwap(result, '÷'); // Calculate result and setting state
 
-
-      if (result.indexOf('%') > -1) {
-        result = result.replace('%', '/100');
-      } // Replace 'times' symbol
-
-
-      result = result.replace('x', '*');
       var calculatedResult = eval(result);
 
       _this.setState({
@@ -32324,12 +32369,7 @@ function (_super) {
       result: ''
     };
     return _this;
-  } // handleSquareRoot = (): void => {
-  //     this.setState(currentState => {
-  //         return { result: '√' + currentState.result }
-  //     })
-  // }
-
+  }
 
   App.prototype.render = function () {
     return React.createElement("div", null, React.createElement("h1", null, "React Calculator"), React.createElement(ResultBoard_1.default, {
@@ -32351,7 +32391,7 @@ function (_super) {
 ;
 exports.default = App;
 react_dom_1.render(React.createElement(App, null), document.getElementById('root'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Touchpad":"components/Touchpad.tsx","./components/ResultBoard":"components/ResultBoard.tsx"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Touchpad":"components/Touchpad.tsx","./components/ResultBoard":"components/ResultBoard.tsx","./helpers":"helpers.tsx"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -32379,7 +32419,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37595" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39373" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

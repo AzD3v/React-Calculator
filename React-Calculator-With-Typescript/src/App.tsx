@@ -1,25 +1,26 @@
 import * as React from 'react';
 import { render } from 'react-dom';
+
 import Touchpad from './components/Touchpad';
 import ResultBoard from './components/ResultBoard';
 
-interface IProps {}
+import { preventInvalidInput, handleSymbolsSwap } from './helpers';
+
+interface IProps {
+    
+}
 
 interface IState {
     result: string
 }
 
 class App extends React.Component<IProps, IState> {
-    constructor(props) {
+    constructor(props: IProps) {
         super(props);
 
         this.state = {
             result: ''
         }
-    }
-
-    handleSymbolsSwap = (result: string, symbol: string) => {
-
     }
 
     handleChosenValueClick = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,33 +34,22 @@ class App extends React.Component<IProps, IState> {
     }
 
     handleCalculateResult = (result: string) => {
-        // TODO: Check for 'to power of 2' symbol and replace it with Math.power (for every occurence)
+        // Prevent app crash from invalid single input
+        if (preventInvalidInput(result)) { return; }
+        
+        // Replacing symbols '²' and '√' with JavaScript math functions
         if (result.indexOf('²') > -1) {
-            const elemElevatedToPowerOf2 = result[result.indexOf('²') - 1];
-            result = result.replace(
-                elemElevatedToPowerOf2, 
-                `Math.pow(${elemElevatedToPowerOf2}, 2)`
-            );
-            result = result.replace('²', '');
+            result = handleSymbolsSwap(result, '²');
+        } else if (result.indexOf('√') > -1) {
+            result = handleSymbolsSwap(result, '√');
         }
 
-        // TODO: Check square root on expressions
-        if (result.indexOf('√') > -1) {
-            const elemToFindSquareRoot = result[result.indexOf('√') + 1];
-            result = result.replace('√', `Math.sqrt(${elemToFindSquareRoot}`);
-            result = result.replace(result[result.indexOf('r') + 4], '');
-            result += ')';
-            console.log(result)
-        }
+        // Checking operation symbols (inluding percentage and change them)
+        result = handleSymbolsSwap(result, '%');
+        result = handleSymbolsSwap(result, 'x');
+        result = handleSymbolsSwap(result, '÷');
 
-        // Check for percantage symbol
-        if (result.indexOf('%') > -1) {
-            result = result.replace('%', '/100');
-        }
-
-        // Replace 'times' symbol
-        result = result.replace('x', '*');
-
+        // Calculate result and setting state
         const calculatedResult = eval(result);
         this.setState({ result: calculatedResult })
     }
@@ -81,12 +71,6 @@ class App extends React.Component<IProps, IState> {
             return { result: currentState.result + '²' }
         })
     }
-
-    // handleSquareRoot = (): void => {
-    //     this.setState(currentState => {
-    //         return { result: '√' + currentState.result }
-    //     })
-    // }
 
     render() {
         return (
