@@ -1,7 +1,7 @@
 // Helper function that prevents app crash from invalid single input
 export const preventInvalidInput = (result) => {
-  const validSingleInputs = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const resultArr = result.split("");
+  const validSingleInputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  const resultArr = result.split('');
 
   if (!resultArr.some(value => validSingleInputs.includes(value))) {
     return true;
