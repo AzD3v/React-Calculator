@@ -8,7 +8,7 @@ const buttonStyle = {
   border: "1px solid #f5f6fa"
 };
 
-const Button = (props) => {
+const Button = props => {
     return (
         <button style={buttonStyle} onClick={props.onClickButton} value={props.value}>
             {props.label}

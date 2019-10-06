@@ -32381,8 +32381,7 @@ function (_super) {
       onCalculateResultClick: this.handleCalculateResult,
       onUndo: this.handleUndoLastInput,
       onClear: this.handleClearInput,
-      onPowerOf2: this.handlePowerOf2 // ={this.handleSquareRoot}
-      ,
+      onPowerOf2: this.handlePowerOf2,
       result: this.state.result
     }));
   };

@@ -6,9 +6,7 @@ import ResultBoard from './components/ResultBoard';
 
 import { preventInvalidInput, handleSymbolsSwap } from './helpers';
 
-interface IProps {
-    
-}
+interface IProps {}
 
 interface IState {
     result: string
@@ -16,7 +14,7 @@ interface IState {
 
 class App extends React.Component<IProps, IState> {
     constructor(props: IProps) {
-        super(props);
+        super(props)
 
         this.state = {
             result: ''
@@ -83,7 +81,6 @@ class App extends React.Component<IProps, IState> {
                     onUndo={this.handleUndoLastInput}
                     onClear={this.handleClearInput}
                     onPowerOf2={this.handlePowerOf2}
-                    // ={this.handleSquareRoot}
                     result={this.state.result}
                 />
             </div>

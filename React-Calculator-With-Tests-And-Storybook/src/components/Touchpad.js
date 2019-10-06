@@ -1,5 +1,5 @@
-import React from "react";
-import Button from "./Button";
+import React from 'react';
+import Button from './Button';
 
 const touchpadStyle = {
   display: "grid",
@@ -7,13 +7,13 @@ const touchpadStyle = {
   margin: "50px"
 };
 
-const Touchpad = (props) => {
+const Touchpad = props => {
     return (
         <div style={touchpadStyle}>
             <Button onClickButton={props.onChosenValueClick} value="7" label="7"></Button>
             <Button onClickButton={props.onChosenValueClick} value="8" label="8"></Button>
             <Button onClickButton={props.onChosenValueClick} value="9" label="9"></Button>
-            <Button onClickButton={props.onChosenValueClick} value="/" label="÷"></Button>
+            <Button onClickButton={props.onChosenValueClick} value="÷" label="÷"></Button>
             <Button onClickButton={props.onUndo} label="⏎" value=""></Button>
             <Button onClickButton={props.onClear} label="C" value=""></Button>
             <Button onClickButton={props.onChosenValueClick} value="4" label="4"></Button>
