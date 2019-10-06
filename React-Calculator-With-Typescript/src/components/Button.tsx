@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const buttonStyle = {
-    fontSize: "25px",
+    fontSize: "30px",
     padding: "15px 26px",
     background: "#192a56",
     color: "#f5f6fa",

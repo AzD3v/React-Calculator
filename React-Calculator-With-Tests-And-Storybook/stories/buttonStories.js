@@ -26,7 +26,7 @@ storiesOf("Button", module)
         background: "#192a56",
         color: "#f5f6fa",
         border: "none",
-        borderRadius: "10px"
+        borderRadius: "12px"
       }}
       onClick={action("click")}
       label="3²"

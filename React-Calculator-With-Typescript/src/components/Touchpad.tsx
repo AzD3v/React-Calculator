@@ -3,12 +3,12 @@ import Button from './Button'
 
 const touchpadStyle = {
     height: '200px',
-    width: '400px',
+    width: '600px',
     display: 'grid',
     gridTemplateColumns: 'repeat(6, 1fr)',
     margin: '0',
     position: 'absolute',
-    top: '35.6%',
+    top: '43%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
 }

@@ -9,7 +9,7 @@ const touchpadStyle = {
 
 const Touchpad = props => {
     return (
-        <div style={touchpadStyle}>
+        <div style={props.style}>
             <Button onClickButton={props.onChosenValueClick} value="7" label="7"></Button>
             <Button onClickButton={props.onChosenValueClick} value="8" label="8"></Button>
             <Button onClickButton={props.onChosenValueClick} value="9" label="9"></Button>

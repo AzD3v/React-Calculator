@@ -10,6 +10,7 @@ storiesOf("ResultBoard", module)
         background: "#111",
         color: "#fff"
       }}
+      html="3²"
     />
   ))
   .add("compressed", () => (
