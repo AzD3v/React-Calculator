@@ -10,7 +10,7 @@ const buttonStyle = {
 
 const Button = props => {
     return (
-        <button style={buttonStyle} onClick={props.onClickButton} value={props.value}>
+        <button style={props.style} onClick={props.onClickButton} value={props.value}>
             {props.label}
         </button>
     )
