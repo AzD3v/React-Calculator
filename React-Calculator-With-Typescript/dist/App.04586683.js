@@ -32005,7 +32005,7 @@ Object.defineProperty(exports, "__esModule", {
 var React = __importStar(require("react"));
 
 var buttonStyle = {
-  fontSize: "25px",
+  fontSize: "30px",
   padding: "15px 26px",
   background: "#192a56",
   color: "#f5f6fa",
@@ -32050,12 +32050,12 @@ var Button_1 = __importDefault(require("./Button"));
 
 var touchpadStyle = {
   height: '200px',
-  width: '400px',
+  width: '600px',
   display: 'grid',
   gridTemplateColumns: 'repeat(6, 1fr)',
   margin: '0',
   position: 'absolute',
-  top: '35.6%',
+  top: '43%',
   left: '50%',
   transform: 'translate(-50%, -50%)'
 };
@@ -32181,14 +32181,24 @@ Object.defineProperty(exports, "__esModule", {
 var React = __importStar(require("react"));
 
 var resultBoardStyle = {
-  background: '#111',
-  color: '#fff'
+  background: "#535c68",
+  color: "#fff",
+  border: "1px solid #f5f6fa",
+  width: '600px',
+  position: 'absolute',
+  top: '20%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)'
 };
 
 var ResultBoard = function ResultBoard(props) {
   return React.createElement("div", {
     style: resultBoardStyle
-  }, React.createElement("h1", null, props.result));
+  }, React.createElement("h1", {
+    style: {
+      textAlign: 'right'
+    }
+  }, props.result, "\xA0"));
 };
 
 exports.default = ResultBoard;
@@ -32374,7 +32384,11 @@ function (_super) {
   }
 
   App.prototype.render = function () {
-    return React.createElement("div", null, React.createElement("h1", null, "React Calculator"), React.createElement(ResultBoard_1.default, {
+    return React.createElement("div", null, React.createElement("h1", {
+      style: {
+        textAlign: 'center'
+      }
+    }, "React Calculator"), React.createElement(ResultBoard_1.default, {
       result: this.state.result
     }), React.createElement(Touchpad_1.default, {
       onChosenValueClick: this.handleChosenValueClick,
@@ -32420,7 +32434,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39373" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37603" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

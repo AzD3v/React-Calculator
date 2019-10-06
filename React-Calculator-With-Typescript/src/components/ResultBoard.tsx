@@ -1,8 +1,14 @@
 import * as React from 'react';
 
 const resultBoardStyle = {
-    background: '#111', 
-    color: '#fff'
+    background: "#535c68",
+    color: "#fff",
+    border: "1px solid #f5f6fa",
+    width: '600px',
+    position: 'absolute',
+    top: '20%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
 }
 
 type ResultBoard = {
@@ -12,7 +18,7 @@ type ResultBoard = {
 const ResultBoard = (props: ResultBoard) => {
     return (
         <div style={resultBoardStyle}>
-            <h1>{props.result}</h1>
+            <h1 style={{textAlign: 'right'}}>{props.result}&nbsp;</h1>
         </div>
     )
 }

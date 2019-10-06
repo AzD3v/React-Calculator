@@ -73,7 +73,7 @@ class App extends React.Component<IProps, IState> {
     render() {
         return (
             <div>
-                <h1>React Calculator</h1>
+                <h1 style={{textAlign: 'center'}}>React Calculator</h1>
                 <ResultBoard result={this.state.result} />
                 <Touchpad 
                     onChosenValueClick={this.handleChosenValueClick} 
